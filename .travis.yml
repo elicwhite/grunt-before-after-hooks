@@ -1,0 +1,17 @@
+language: node_js
+script: npm test
+node_js:
+- node
+- '6'
+- '4'
+notifications:
+  email: false
+deploy:
+  provider: npm
+  email: npm@eli-white.com
+  api_key:
+    secure: TO1iPhWLDmqZSvOAz8lwDwSkytGbrEZuY8LtLOPN8gaNiXEp9wDZXhXxIOdne1i9zCcW/Agb+qctMpnyewY2aG80qb5NAQShUzBQWlRGEcq6Lw/5hBqZ6n8J+NQQYRDOpwRcapCzFqrntOJrSWN7AxyyTuKfrNFEc4cLO/p3xXx7ErkBpseoexfS0+zYNj6Hd1FLJZkzb2E04I+szIFPXq/ChBvsWTquiBh/ttSnLxX4VL3fcr6BU3wctP3nkFAbvNgOEfD/APk+/CO+oJ2vIW7vdcSulQ5SU0wKg4LKMkSAEF2e4Y7shda9iwRm2pn5MKURXpEwAjA019uzGLX8PI49RWyGI3tB1OA3r5tvTmCg3BCSW0tSv11fLT1iUDapQ8xrpyFWqG+fru3xzhw7gxB1/WQBIisip3rzvhIZ/b9YWIjLmdt/P6pX0zh78Gk+g9/c+eLb/U8UamBDRNN/lQNhLlTR8SlyUrl5YpFi5GV/5HOk4MfAQ1YLC/EdvTO+R+LO1t3fzNSXJkK/OgxH3Vz0DFDAu3S0eAhZAwUYVBx7u3x0p5tcqYQCYSwjeHe+o4RPEp6M5CNZR0Kr/VShdDNvGsgHjm8ACrdSahL22GCp5QAv7vTnhWzCNjRNfst8Zn0GDWir7gK4pPk3Gx2o2t/nH/pnGdmnAIWNWqtxa7A=
+  on:
+    tags: true
+    repo: TheSavior/grunt-before-after-hooks
+    node: node
