@@ -12,7 +12,6 @@ $ npm install --save grunt-before-after-hooks
 ## Usage
 
 ```js
-// Gruntfile.js
 module.exports = grunt => {
   // require it at the top and pass in the grunt instance
   require('grunt-before-after-hooks')(grunt, {
