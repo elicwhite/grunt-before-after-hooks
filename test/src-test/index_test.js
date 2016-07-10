@@ -101,7 +101,7 @@ describe('grunt-before-after-hooks', () => {
   it('should print nothing when grunt is run with -q', (done) => {
     grunt.util.spawn({
       cmd: 'grunt',
-      args: ['--gruntfile', beforeAfter, 'plugin_tester', '--q']
+      args: ['--gruntfile', beforeAfter, 'plugin_tester', '-q']
     }, (error, result) => {
       assert(result.stdout.indexOf('beforeEach!') === -1);
       assert(result.stdout.indexOf('after!') === -1);
