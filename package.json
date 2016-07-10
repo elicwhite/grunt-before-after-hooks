@@ -2,11 +2,12 @@
   "name": "grunt-before-after-hooks",
   "version": "0.0.2",
   "description": "Hook into right before and right after grunt tasks are run",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "author": "Eli White <github@eli-white.com> (http://eli-white.com)",
   "files": [
     "lib"
   ],
+  "repository": "thesavior/grunt-before-after-hooks",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src -d lib",
