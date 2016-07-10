@@ -1,6 +1,6 @@
 {
   "name": "grunt-before-after-hooks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Hook into right before and right after grunt tasks are run",
   "license": "Apache-2.0",
   "author": "Eli White <github@eli-white.com> (http://eli-white.com)",
