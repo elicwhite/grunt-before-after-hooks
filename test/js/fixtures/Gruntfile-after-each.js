@@ -9,14 +9,20 @@ function log(str) {
 module.exports = function(grunt) {
 
   require('../../../src/index')(grunt, {
-    beforeEach(args) {
+    afterEach(args) {
       log(JSON.stringify(args));
     }
   });
 
   grunt.initConfig({});
 
+  grunt.registerTask('multi', ['plugin_tester', 'plugin_tester2']);
+
   grunt.registerTask('plugin_tester', () => {
     grunt.log.writeln('Plugin is printing');
+  });
+
+  grunt.registerTask('plugin_tester2', () => {
+    grunt.log.writeln('Plugin tester 2 is printing');
   });
 };

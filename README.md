@@ -15,7 +15,13 @@ $ npm install --save grunt-before-after-hooks
 module.exports = grunt => {
   // require it at the top and pass in the grunt instance
   require('grunt-before-after-hooks')(grunt, {
-    before(currentTask) {
+    beforeEach(currentTask) {
+      console.log(JSON.stringify(currentTask));
+      /*
+      {"nameArgs":"plugin_tester","name":"plugin_tester","args":[],"flags":{},"errorCount":0}
+      */
+    },
+    afterEach(previousTask) {
       console.log(JSON.stringify(currentTask));
       /*
       {"nameArgs":"plugin_tester","name":"plugin_tester","args":[],"flags":{},"errorCount":0}
@@ -30,4 +36,4 @@ module.exports = grunt => {
 }
 ```
 
-The argument given to the `before` hook is an instance of [`grunt.task.current`](http://gruntjs.com/api/inside-tasks#this.name).
+The argument given to the `beforeEach` and `afterEach` hooks are instances of [`grunt.task.current`](http://gruntjs.com/api/inside-tasks#this.name).

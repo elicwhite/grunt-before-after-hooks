@@ -9,8 +9,8 @@ function log(str) {
 module.exports = function(grunt) {
 
   require('../../../src/index')(grunt, {
-    before() {
-      log('before!');
+    beforeEach() {
+      log('beforeEach!');
     },
 
     after() {

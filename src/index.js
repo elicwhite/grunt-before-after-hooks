@@ -4,12 +4,18 @@ const hooker = require('hooker');
 const argv = process.argv.slice(2);
 
 module.exports = function(grunt, options) {
-  const before = options.before || function() {};
+  const beforeEach = options.beforeEach || function() {};
+
+  const afterEach = options.afterEach || function() {};
 
   const after = options.after || function() {};
 
-  if (typeof(before) !== 'function') {
-    throw new Error('The before hook must be a function');
+  if (typeof(beforeEach) !== 'function') {
+    throw new Error('The beforeEach hook must be a function');
+  }
+
+  if (typeof(afterEach) !== 'function') {
+    throw new Error('The afterEach hook must be a function');
   }
 
   if (typeof(after) !== 'function') {
@@ -51,8 +57,16 @@ module.exports = function(grunt, options) {
 
   process.exit = exit;
 
+  let prevTask;
+
   hooker.hook(grunt.log, 'header', () => {
-    before(grunt.task.current);
+    if (prevTask) {
+      afterEach(prevTask);
+    }
+
+    beforeEach(grunt.task.current);
+
+    prevTask = grunt.task.current;
   });
 
   process.on('SIGINT', () => {
@@ -61,6 +75,11 @@ module.exports = function(grunt, options) {
 
   process.once('wraphookgruntexit', (exitCode) => {
     clearInterval(interval);
+
+    if (prevTask) {
+      afterEach(prevTask);
+    }
+
     after();
     process.exit = originalExit;
     hooker.unhook(grunt.log, 'header');
