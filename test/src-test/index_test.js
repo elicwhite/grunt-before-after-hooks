@@ -65,4 +65,24 @@ describe('grunt-before-after-hooks', () => {
       done();
     });
   });
+
+  it('should print nothing when grunt is run in quiet mode', (done) => {
+    grunt.util.spawn({
+      cmd: 'grunt',
+      args: ['--gruntfile', beforeAfter, 'plugin_tester', '--quiet']
+    }, (error, result) => {
+      assert(result.stdout.indexOf('before!') === -1);
+      assert(result.stdout.indexOf('after!') === -1);
+      done();
+    });
+
+    grunt.util.spawn({
+      cmd: 'grunt',
+      args: ['--gruntfile', beforeAfter, 'plugin_tester', '-q']
+    }, (error, result) => {
+      assert(result.stdout.indexOf('before!') === -1);
+      assert(result.stdout.indexOf('after!') === -1);
+      done();
+    });
+  });
 });

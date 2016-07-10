@@ -1,6 +1,7 @@
 'use strict';
 
 const hooker = require('hooker');
+const argv = process.argv.slice(2);
 
 module.exports = function(grunt, options) {
   const before = options.before || function() {};
@@ -13,6 +14,16 @@ module.exports = function(grunt, options) {
 
   if (typeof(after) !== 'function') {
     throw new Error('The after hook must be a function');
+  }
+
+  if (argv.indexOf('--help') !== -1 ||
+    argv.indexOf('-h') !== -1 ||
+    // for `quiet-grunt`
+    argv.indexOf('--quiet') !== -1 ||
+    argv.indexOf('-q') !== -1 ||
+    argv.indexOf('--version') !== -1 ||
+    argv.indexOf('-V') !== -1) {
+    return;
   }
 
   // crazy hack to work around stupid node-exit
