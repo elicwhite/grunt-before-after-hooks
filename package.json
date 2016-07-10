@@ -1,0 +1,17 @@
+{
+  "name": "grunt-before-after-hooks",
+  "version": "0.0.1",
+  "description": "Hook into right before and right after grunt tasks are run",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.0.1"
+  },
+  "dependencies": {
+    "hooker": "^0.2.3"
+  }
+}
