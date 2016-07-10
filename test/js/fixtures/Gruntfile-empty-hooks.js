@@ -1,9 +1,10 @@
-const path = require('path');
+'use strict';
 
 module.exports = function(grunt) {
 
-  require('../../..')(grunt, {
+  require('../../../src/index')(grunt, {
     before() {},
+
     after() {}
   });
 

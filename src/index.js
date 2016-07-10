@@ -1,17 +1,11 @@
 'use strict';
 
-const argv = process.argv.slice(2);
 const hooker = require('hooker');
 
-const write = process.stdout.write.bind(process.stdout);
-
-function log(str) {
-  write(str + '\n', 'utf8');
-}
-
 module.exports = function(grunt, options) {
-  const before = options.before || () => {};
-  const after = options.after || () => {};
+  const before = options.before || function() {};
+
+  const after = options.after || function() {};
 
   if (typeof(before) !== 'function') {
     throw new Error('The before hook must be a function');
@@ -21,37 +15,40 @@ module.exports = function(grunt, options) {
     throw new Error('The after hook must be a function');
   }
 
-  let prevTask;
-
   // crazy hack to work around stupid node-exit
   // Can this be removed now that node-exit#4 has been resolved?
   // https://github.com/cowboy/node-exit/issues/4
-  var originalExit = process.exit;
+  const originalExit = process.exit;
 
-  var interval;
+  const interval = setInterval(intervalFunc, 100);
 
-  var exit = function (exitCode) {
+  let exited = false;
+
+  function exit(exitCode) {
+    if (exited) {
+      return;
+    }
+
     clearInterval(interval);
     process.emit('wraphookgruntexit', exitCode);
-    exit = function () {};
-  };
+    exited = true;
+  }
 
-  interval = setInterval(function () {
+  function intervalFunc() {
     process.exit = exit;
-  }, 100);
+  }
 
   process.exit = exit;
 
-  hooker.hook(grunt.log, 'header', function () {
-    prevTask = grunt.task.current;
+  hooker.hook(grunt.log, 'header', () => {
     before(grunt.task.current);
   });
 
-  process.on('SIGINT', function () {
+  process.on('SIGINT', () => {
     process.exit();
   });
 
-  process.once('wraphookgruntexit', function (exitCode) {
+  process.once('wraphookgruntexit', (exitCode) => {
     clearInterval(interval);
     after();
     process.exit = originalExit;

@@ -1,4 +1,5 @@
-const path = require('path');
+'use strict';
+
 const write = process.stdout.write.bind(process.stdout);
 
 function log(str) {
@@ -7,11 +8,9 @@ function log(str) {
 
 module.exports = function(grunt) {
 
-  require('../../..')(grunt, {
+  require('../../../src/index')(grunt, {
     before(args) {
       log(JSON.stringify(args));
-    },
-    after() {
     }
   });
 

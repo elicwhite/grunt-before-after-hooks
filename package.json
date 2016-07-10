@@ -2,16 +2,30 @@
   "name": "grunt-before-after-hooks",
   "version": "0.0.1",
   "description": "Hook into right before and right after grunt tasks are run",
-  "main": "src/index.js",
+  "license": "Apache-2.0",
+  "author": "Eli White <github@eli-white.com> (http://eli-white.com)",
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
   "scripts": {
-    "test": "mocha"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "grunt": "^1.0.1"
+    "build": "babel src -d lib",
+    "style": "eslint src test && jscs src test",
+    "pretest": "npm run style",
+    "test": "mocha",
+    "posttest": "npm run build"
   },
   "dependencies": {
     "hooker": "^0.2.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.9.0",
+    "eslint": "^3.0.1",
+    "grunt": "^1.0.1",
+    "jscs": "^3.0.6",
+    "mocha": "^2.5.3",
+    "wealthfront-javascript": "^3.1.0"
   }
 }
