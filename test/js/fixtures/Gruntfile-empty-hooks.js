@@ -3,7 +3,7 @@
 module.exports = function(grunt) {
 
   require('../../../src/index')(grunt, {
-    before() {},
+    beforeEach() {},
 
     after() {}
   });
