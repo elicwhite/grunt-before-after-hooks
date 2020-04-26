@@ -26,7 +26,7 @@
     "eslint": "^3.0.1",
     "grunt": "^1.0.1",
     "jscs": "^3.0.6",
-    "mocha": "^3.0.1",
+    "mocha": "^7.1.2",
     "wealthfront-javascript": "^4.0.0"
   }
 }
